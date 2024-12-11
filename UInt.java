@@ -208,28 +208,28 @@ public class UInt {
         int maxLength = Math.max(this.length, u.length);
 
         if(this.length < maxLength){
-            boolean[] newBits = new boolean[maxLength];
-            System.arraycopy(this.bits, 0, newBits, maxLength-this.length, this.length);
-            this.bits=newBits;
+            boolean[] bits = new boolean[maxLength];
+            System.arraycopy(this.bits, 0, bits, maxLength-this.length, this.length);
+            this.bits=bits;
             this.length = maxLength;
         }
         for(int i = 0; i < maxLength; i++){
-            int thisIndex = this.length - i - 1;
+            int tIndex = this.length - i - 1;
             int uIndex = u.length - i - 1;
 
-            boolean bitThis = this.bits[thisIndex];
-            boolean bitu = uIndex >= 0 && u.bits[uIndex];
+            boolean thisBit = this.bits[tIndex];
+            boolean ubit = uIndex >= 0 && u.bits[uIndex];
 
-            boolean sum = bitThis ^ bitu ^ carry;
-            carry = (bitThis && bitu)|| (carry && (bitThis^bitu));
+            boolean sum = thisBit ^ ubit ^ carry;
+            carry = (thisBit && ubit)|| (carry && (thisBit^ubit));
 
-            this.bits[thisIndex] = sum;
+            this.bits[tIndex] = sum;
         }
         if(carry){
-            boolean[] newBits = new boolean[this.length + 1];
-            System.arraycopy(this.bits, 0, newBits, 1, this.length);
-            newBits[0] = true;
-            this.bits = newBits;
+            boolean[] bits = new boolean[this.length + 1];
+            System.arraycopy(this.bits, 0, bits, 1, this.length);
+            bits[0] = true;
+            this.bits = bits;
             this.length += 1;
         }
 
