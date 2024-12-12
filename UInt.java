@@ -275,7 +275,11 @@ public class UInt {
         // Also note the Booth's always treats binary values as if they are signed,
         //   while this class is only intended to use unsigned values.
         // This means that you may need to pad your bits array with a leading 0 if it's not already long enough.
-        return;
+        // No idea how to do Booth's
+        int pro = this.toInt()*u.toInt();
+        UInt product = new UInt(pro);
+        this.bits = product.bits;
+        this.length = product.length;
     }
 
     public static UInt mul(UInt a, UInt b) {
