@@ -276,8 +276,8 @@ public class UInt {
         //   while this class is only intended to use unsigned values.
         // This means that you may need to pad your bits array with a leading 0 if it's not already long enough.
         // No idea how to do Booth's
-        int pro = this.toInt()*u.toInt();
-        UInt product = new UInt(pro);
+        int prod = this.toInt()*u.toInt();
+        UInt product = new UInt(prod);
         this.bits = product.bits;
         this.length = product.length;
     }
